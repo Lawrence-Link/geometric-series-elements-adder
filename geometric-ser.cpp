@@ -16,9 +16,9 @@
 
 using namespace std;
 
-unsigned START_AT;
-unsigned STOP_AT;
-unsigned PUBL_RATIO;
+unsigned long START_AT;
+unsigned long STOP_AT;
+unsigned long PUBL_RATIO;
 
 void calc_fail();
 
@@ -31,10 +31,12 @@ int main()
     cout << "The Public Ratio is" << endl;
     cin >> PUBL_RATIO;
 
+    if (cin.good()){
+
     cout << "CALCULATING STATRED." << endl;
 
-    static unsigned proc_num = START_AT;
-    static int answer_final = 1;
+    static unsigned long proc_num = START_AT;
+    static long answer_final = 1;
     static bool calFailedFlag = false;
     do
     {
@@ -50,16 +52,19 @@ int main()
 
     } while (proc_num != STOP_AT);
     
-    if (!calFailedFlag){
+    if (!calFailedFlag && cin.good()){
        cout << "This is the final answer." << endl;
        cout << answer_final << endl;
     }
     
+    }else {
+        cerr << "Input valid. Check if anything goes wrong, maybe you just entered characters?";
+    }
     system("PAUSE");
     return 0;
 }
 
 void calc_fail()
 {
-    cout << "Calculation failed. The answer does not exist." << endl;
+    cerr <<"\nCalculation failed. The answer does not exist." << endl;
 }
