@@ -21,6 +21,7 @@ unsigned long STOP_AT;
 unsigned long PUBL_RATIO;
 
 void calc_fail();
+void multipleByC(long & _input);
 
 int main()
 {
@@ -31,13 +32,15 @@ int main()
     cout << "The Public Ratio is" << endl;
     cin >> PUBL_RATIO;
 
-    if (cin.good()){
+    if (cin.good())
+    {
 
-    cout << "CALCULATING STATRED." << endl;
+        cout << "CALCULATING STATRED." << endl;
 
-    static unsigned long proc_num = START_AT;
-    static long answer_final = 1;
-    static bool calFailedFlag = false;
+        static unsigned long proc_num = START_AT;
+        static long answer_final = START_AT;
+        static bool calFailedFlag = false;
+        
     do
     {
         proc_num *= PUBL_RATIO;
@@ -52,12 +55,15 @@ int main()
 
     } while (proc_num != STOP_AT);
     
-    if (!calFailedFlag && cin.good()){
-       cout << "This is the final answer." << endl;
-       cout << answer_final << endl;
+
+        if (!calFailedFlag && cin.good())
+        {
+            cout << "This is the final answer." << endl;
+            cout << answer_final << endl;
+        }
     }
-    
-    }else {
+    else
+    {
         cerr << "Input valid. Check if anything goes wrong, maybe you just entered characters?";
     }
     system("PAUSE");
@@ -66,5 +72,5 @@ int main()
 
 void calc_fail()
 {
-    cerr <<"\nCalculation failed. The answer does not exist." << endl;
+    cerr << "\nCalculation failed. The answer does not exist." << endl;
 }
