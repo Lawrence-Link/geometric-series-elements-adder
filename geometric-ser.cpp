@@ -2,7 +2,7 @@
     [A geometric series sub element adder]
     
    START        STOP
-     ↓           ↓
+     ↓                     ↓
     [A B C D E F G] elements
      ↑ ↑ ↑ ↑ ↑ ↑ ↑
      ------------- PUBL_RATIO
@@ -21,7 +21,6 @@ unsigned long STOP_AT;
 unsigned long PUBL_RATIO;
 
 void calc_fail();
-void multipleByC(long & _input);
 
 int main()
 {
@@ -40,28 +39,28 @@ int main()
         static unsigned long proc_num = START_AT;
         static long answer_final = START_AT;
         static bool calFailedFlag = false;
-        
+
     do
     {
         proc_num *= PUBL_RATIO;
         answer_final += proc_num;
-        cout << answer_final << endl;
-
-        if (answer_final < 0){ // NOT fine
+        //cout << answer_final << endl;
+          cout << proc_num << endl;
+        if (answer_final < 0 || proc_num > STOP_AT){ // NOT fine
             calc_fail();
             calFailedFlag = true;
             break;
         }
 
-    } while (proc_num != STOP_AT);
-    
+    } while (proc_num != STOP_AT && proc_num < STOP_AT);
 
-        if (!calFailedFlag && cin.good())
+        if (!calFailedFlag && cin.good() && proc_num == STOP_AT)
         {
             cout << "This is the final answer." << endl;
             cout << answer_final << endl;
         }
     }
+    
     else
     {
         cerr << "Input valid. Check if anything goes wrong, maybe you just entered characters?";
